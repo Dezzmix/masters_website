@@ -85,10 +85,10 @@
     widget_css += "a.glink:hover img{opacity:1}";
 
     var current_lang = document.querySelector('html').getAttribute('lang')||default_language;
-    if(url_structure == 'none') {
+    /*if(url_structure == 'none') {
         var googtrans_matches = document.cookie.match('(^|;) ?googtrans=([^;]*)(;|$)');
         current_lang = googtrans_matches && googtrans_matches[2].split('/')[2] || current_lang;
-    }
+    }*/
 
     if(!lang_array[current_lang])
         current_lang = default_language;
@@ -174,7 +174,7 @@
     });
     document.querySelectorAll(u_class+' .gt_black_overlay').forEach(function(e){e.addEventListener('click', function(evt) {if(gt_popup_open)gt_hide_popup()})});
 
-    if(url_structure == 'none') {
+    /*if(url_structure == 'none') {
         function get_current_lang() {var keyValue = document.cookie.match('(^|;) ?googtrans=([^;]*)(;|$)');return keyValue ? keyValue[2].split('/')[2] : null;}
         function fire_event(element,event){try{if(document.createEventObject){var evt=document.createEventObject();element.fireEvent('on'+event,evt)}else{var evt=document.createEvent('HTMLEvents');evt.initEvent(event,true,true);element.dispatchEvent(evt)}}catch(e){}}
         function load_tlib(){if(!window.gt_translate_script){window.gt_translate_script=document.createElement('script');gt_translate_script.src='https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit2';document.body.appendChild(gt_translate_script);}}
@@ -184,7 +184,7 @@
         if(current_lang != default_language)
             load_tlib();
         else
-            document.querySelectorAll(u_class).forEach(function(e){e.addEventListener('pointerenter',load_tlib)});
+            document.querySelectorAll(u_class).forEach(function(e){e.addEventListener('pointerenter',load_tlib)});*/
 
         document.querySelectorAll(u_class + ' a[data-gt-lang]').forEach(function(e){e.addEventListener('click', function(evt) {
             evt.preventDefault();
