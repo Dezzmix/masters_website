@@ -220,6 +220,6 @@
                 document.querySelectorAll(u_class+' a[data-gt-lang="'+preferred_language+'"]').forEach(function(e){location.href=e.href});
         }
 
-        sessionStorage.setItem('gt_autoswitch', 1);
+        sessionStorage.setItem('gt_autoswitch', 0);
     }
 })();
