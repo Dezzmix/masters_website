@@ -196,7 +196,7 @@
         })});
     }
 
-    if(detect_browser_language && window.sessionStorage && window.navigator && sessionStorage.getItem('gt_autoswitch') == null && !/bot|spider|slurp|facebook/i.test(navigator.userAgent)) {
+    /*if(detect_browser_language && window.sessionStorage && window.navigator && sessionStorage.getItem('gt_autoswitch') == null && !/bot|spider|slurp|facebook/i.test(navigator.userAgent)) {
         var accept_language = (navigator.language||navigator.userLanguage).toLowerCase();
         switch(accept_language) {
             case 'zh':
@@ -205,7 +205,7 @@
             case 'zh-hk':var preferred_language = 'zh-TW';break;
             case 'he':var preferred_language = 'iw';break;
             default:var preferred_language = accept_language.substr(0,2);break;
-        }
+        }*/
 
         if(current_lang == default_language && preferred_language != default_language && languages.includes(preferred_language)) {
             if(url_structure == 'none') {
@@ -220,6 +220,6 @@
                 document.querySelectorAll(u_class+' a[data-gt-lang="'+preferred_language+'"]').forEach(function(e){location.href=e.href});
         }
 
-        sessionStorage.setItem('gt_autoswitch', 1);
+        /*sessionStorage.setItem('gt_autoswitch', 1);*/
     }
 })();
