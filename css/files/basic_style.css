@@ -144,7 +144,7 @@ h2.cntr { /* Подзаголовок страницы (названия под�
 
 p { /* Абзац */
 	text-indent: 20pt;
-	font: 15pt/120% Times New Roman, serif; 
+	font: 16pt/120% Times New Roman, serif; 
 	margin: 0pt 0pt 0pt 0pt;
 	padding: 2pt 15pt 3pt 15pt;   		
 	text-align: justify;
