@@ -1,0 +1,91 @@
+/* -------------- ќƒЌј  ќЋќЌ ј ------------------------------------------------------------------------------ */
+
+#middleblock { /* —редний блок (меню и основной текст в двухколоночной верстке, только основной текст - в одноколоночной)*/
+}
+	
+#maintext { /* Ѕлок основного текста */
+ 	font: 14pt/120% Times new roman, serif;
+	line-height: 110%;
+	padding: 15pt 0pt 15pt 10pt;
+	position: relative; 
+	display: block;
+}
+
+#menu { /* Ѕлок верхнего меню */
+	clear: both;
+	text-align: center;
+	padding: 2pt 0pt 10pt 0pt;
+  background: #e7eef0;	
+	border-top: solid 1pt #b4cdd4;	
+	border-bottom: solid 1pt #b4cdd4;
+}
+
+#menub {
+  /* Основной блок меню */
+  clear: both;
+  text-align: center;
+  padding: 20px 0;
+  background: linear-gradient(to right, #f8f9fa, #e9ecef);
+  border: none;
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.mitemb {
+  /* Стили для кнопок */
+  font-size: 17px;
+  font-weight: 700;
+  text-decoration: none;
+  color: #495057;
+  margin: 0 15px;
+  padding: 10px 20px;
+  border-radius: 25px;
+  transition: all 0.3s ease;
+  display: inline-block;
+  background: transparent;
+  position: relative;
+  overflow: hidden;
+}
+
+.mitemb:hover {
+  color: #228be6;
+  transform: translateY(-2px);
+}
+
+.mitemb::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background: #228be6;
+  transition: all 0.3s ease;
+  transform: translateX(-50%);
+}
+
+.mitemb:hover::after {
+  width: 80%;
+}
+
+/* Анимация при появлении */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.mitemb {
+  animation: fadeInUp 0.5s ease forwards;
+}
+
+#sb{ /*  нопки соцсетей */
+	clear: both;
+	text-align: center;
+	padding: 18pt 0pt 0pt 0pt;
+  background: white;	
+}
