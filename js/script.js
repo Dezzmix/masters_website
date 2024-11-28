@@ -57,8 +57,8 @@ class Particle {
         let forceDirectionY = dy / distance;
         let maxDistance = mouse.radius;
         let force = (maxDistance - distance) / maxDistance;
-        let directionX = forceDirectionX * force * this.density * 0.1;
-        let directionY = forceDirectionY * force * this.density * 0.1;
+        let directionX = forceDirectionX * force * this.density * 0.2;
+        let directionY = forceDirectionY * force * this.density * 0.2;
 
         // Если частица в зоне притяжения мыши
         if (distance < mouse.radius) {
@@ -68,11 +68,11 @@ class Particle {
             // Возвращение частиц на базовые координаты с учётом инверсии
             if (this.x !== this.baseX) {
                 let dx = this.x - this.baseX;
-                this.x -= dx / 20;
+                this.x -= dx / 40;
             }
             if (this.y !== this.baseY + effectiveScrollY) {
                 let dy = (this.y - effectiveScrollY) - this.baseY;
-                this.y -= dy / 20;
+                this.y -= dy / 40;
             }
         }
     }
