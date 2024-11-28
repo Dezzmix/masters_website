@@ -29,7 +29,7 @@ class Particle {
         this.x = x;
         this.y = y;
         this.size = Math.random() * 4 + 1; // Случайный размер от 1 до 5 пикселей
-        const grayValue = Math.floor(Math.random() * 100 + 150); // Оттенок от 150 до 250 (светло-серый)
+        const grayValue = Math.floor(Math.random() * 101 + 155); // Оттенок от 150 до 250 (светло-серый)
         this.color = `rgb(${grayValue}, ${grayValue}, ${grayValue})`; 
         this.baseX = x;
         this.baseY = y;
