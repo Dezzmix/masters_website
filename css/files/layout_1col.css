@@ -4,6 +4,8 @@
 }
 	
 #maintext { /* Ѕлок основного текста */
+	margin-left: 3%;
+ 	margin-right: 3%;
  	font: 14pt/120% Times new roman, serif;
 	line-height: 110%;
 	padding: 15pt 0pt 15pt 10pt;
