@@ -1,11 +1,18 @@
 const canvas = document.getElementById('background');
 const ctx = canvas.getContext('2d');
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
+
+// Устанавливаем размеры холста под размер видимой области
+function setCanvasSize() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+}
+
+setCanvasSize();
 
 let particlesArray = [];
+let scrollSpeedFactor = 0.5; // Коэффициент инверсии движения
 
-// Handle mouse
+// Обработка мыши
 const mouse = {
     x: null,
     y: null,
@@ -13,8 +20,8 @@ const mouse = {
 };
 
 window.addEventListener('mousemove', function(event) {
-    mouse.x = event.x;
-    mouse.y = event.y;
+    mouse.x = event.pageX; // Учитываем координаты мыши на странице
+    mouse.y = event.pageY;
 });
 
 class Particle {
@@ -22,7 +29,6 @@ class Particle {
         this.x = x;
         this.y = y;
         this.size = Math.random() * 4 + 1; // Случайный размер от 1 до 5 пикселей
-        // Используем более сдержанные цвета, например, оттенки серого
         const grayValue = Math.floor(Math.random() * 100 + 150); // Оттенок от 150 до 250 (светло-серый)
         this.color = `rgb(${grayValue}, ${grayValue}, ${grayValue})`; 
         this.baseX = x;
@@ -38,10 +44,15 @@ class Particle {
         ctx.fill();
     }
     
-    update() {
-        let dx = mouse.x - this.x;
-        let dy = mouse.y - this.y;
+    update(scrollOffset) {
+        // Учитываем инвертированное смещение прокрутки
+        const effectiveScrollY = -scrollOffset * scrollSpeedFactor;
+
+        let dx = mouse.x - this.x; // Расстояние до мыши
+        let dy = mouse.y - (this.y - effectiveScrollY); // Смещение с учётом инверсии
         let distance = Math.sqrt(dx * dx + dy * dy);
+
+        // Расчёт силы притяжения
         let forceDirectionX = dx / distance;
         let forceDirectionY = dy / distance;
         let maxDistance = mouse.radius;
@@ -49,16 +60,18 @@ class Particle {
         let directionX = forceDirectionX * force * this.density * 0.1;
         let directionY = forceDirectionY * force * this.density * 0.1;
 
+        // Если частица в зоне притяжения мыши
         if (distance < mouse.radius) {
             this.x -= directionX;
             this.y -= directionY;
         } else {
+            // Возвращение частиц на базовые координаты с учётом инверсии
             if (this.x !== this.baseX) {
                 let dx = this.x - this.baseX;
                 this.x -= dx / 20;
             }
-            if (this.y !== this.baseY) {
-                let dy = this.y - this.baseY;
+            if (this.y !== this.baseY + effectiveScrollY) {
+                let dy = (this.y - effectiveScrollY) - this.baseY;
                 this.y -= dy / 20;
             }
         }
@@ -70,7 +83,7 @@ function init() {
     let numberOfParticles = (canvas.width * canvas.height) / 2000; // Плотность частиц
     for (let i = 0; i < numberOfParticles; i++) {
         let x = Math.random() * canvas.width;
-        let y = Math.random() * canvas.height;
+        let y = Math.random() * canvas.height + window.scrollY * scrollSpeedFactor; // Учитываем начальное смещение
         particlesArray.push(new Particle(x, y));
     }
 }
@@ -79,7 +92,7 @@ function animate() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     for (let i = 0; i < particlesArray.length; i++) {
         particlesArray[i].draw();
-        particlesArray[i].update();
+        particlesArray[i].update(window.scrollY);
     }
     requestAnimationFrame(animate);
 }
@@ -87,8 +100,8 @@ function animate() {
 init();
 animate();
 
+// Обновляем размеры холста при изменении размеров окна
 window.addEventListener('resize', function() {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
+    setCanvasSize();
     init();
 });
