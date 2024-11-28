@@ -99,7 +99,7 @@ h1 { /* Заголовок страницы */
 }
 
 h2 { /* Подзаголовок страницы (названия подразделов) */
-  font: bold 15pt Century, serif;
+  font: bold 16pt Century, serif;
   text-indent: 25pt;
   margin: 20pt 10pt 10pt 10pt;
   color: #0000a3;
